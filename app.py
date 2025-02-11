@@ -48,8 +48,15 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks):
     embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
-    vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
-    return vectorstore
+    # vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+    # return vectorstore
+    try:
+        embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+        print("Embedding model loaded successfully!")
+        vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
+        return vectorstore
+    except ImportError as e:
+        print("Error:", e)
 
 def get_conversation_chain(vectorstore):
     llm = ChatOpenAI()

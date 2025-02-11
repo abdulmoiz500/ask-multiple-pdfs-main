@@ -21,3 +21,4 @@ faiss-cpu
 streamlit
 langchain
 langchain_community
+pip==25.0.1

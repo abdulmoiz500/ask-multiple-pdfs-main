@@ -13,12 +13,11 @@
 # uncomment to use instructor embeddings
 # InstructorEmbedding==1.0.1
 # sentence-transformers==2.2.2
-
-langchain
-langchain_community
-streamlit
+torch==2.0.1+cpu
+transformers
 sentence-transformers
 InstructorEmbedding
-torch
-transformers
 faiss-cpu
+streamlit
+langchain
+langchain_community

@@ -15,6 +15,8 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Force CPU execution
+
 
 import subprocess
 

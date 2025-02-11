@@ -15,6 +15,21 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 
+
+import subprocess
+
+def check_dependencies():
+    try:
+        import sentence_transformers
+        import InstructorEmbedding
+        print("✅ All required dependencies are installed!")
+    except ImportError:
+        print("⚠️ Dependencies missing. Trying to install...")
+        subprocess.run(["pip", "install", "sentence-transformers", "InstructorEmbedding"])
+
+check_dependencies()
+
+
 load_dotenv()  # Load variables from .env
 print("OpenAI API Key:", os.getenv("OPENAI_API_KEY"))
 
@@ -47,7 +62,8 @@ def get_text_chunks(text):
 #     return vectorstore
 
 def get_vectorstore(text_chunks):
-    embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    embeddings = HuggingFaceInstructEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     # vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     # return vectorstore
     try:

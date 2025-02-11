@@ -12,11 +12,12 @@ from langchain.chains import ConversationalRetrievalChain
 from htmlTemplates import css, bot_template, user_template
 from langchain_community.llms import HuggingFaceHub
 import streamlit as st
-
 import os
+from dotenv import load_dotenv
 
-load_dotenv()
-print("API Key:", os.getenv("OPENAI_API_KEY"))
+load_dotenv()  # Load variables from .env
+print("OpenAI API Key:", os.getenv("OPENAI_API_KEY"))
+
 
 
 def get_pdf_text(pdf_docs):
